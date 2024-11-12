@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sociology Adventure</title>
+    <style>
+        :root {
+    --c1    : #F6FCDF;
+    --c2    : #859F3D;
+    --c3    : #31511E;
+    --c4    : #1A1A19;
+    --s1    : #DFF2EB;
+    --s2    : #B9E5E8;
+    --s3    : #7AB2D3;  
+    --s4    : #4A628A; 
+
+}
+
+        @keyframes upDownStatic {
+            0% {
+                transform: translateY(0);
+            }
+            25% {
+                transform: translateY(0.6rem);
+            }
+            50% {
+                transform: translateY(0);
+            }
+            75% {
+                transform: translateY(0.6rem);
+            }
+            100% {
+                transform: translateY(0);
+            }
+
+        }
+
+        @keyframes upDownStaticCta {
+            0% {
+                transform: translateY(0);
+            }
+            25% {
+                transform: translateY(1rem);
+            }
+            50% {
+                transform: translateY(0);
+            }
+            75% {
+                transform: translateY(1rem);
+            }
+            100% {
+                transform: translateY(0);
+            }
+
+        }
+        
+
+        @keyframes cloudMovement {
+            0% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(0.5rem);
+            }
+            50% {
+                transform: translateX(0);
+            }
+            75% {
+                transform: translateX(0.5rem);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+            
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            font-family: monospace;
+            overflow: hidden;
+            background-color: var(--s2);
+        }
+
+        .header{
+            height: 15%;
+            width: 100%;
+            position: absolute;
+            bottom: 1.5rem;
+            background-color: transparent;
+            color: var(--c1);
+            font-size: 2rem;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+
+
+        .container {
+            
+            height: 85%;
+            width: 100%;
+
+        }
+
+        .float-islands {
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+
+        .cta {
+            position: relative;
+            top: 2rem;
+            height: 80%;
+            width: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: upDownStaticCta 7s ease-in-out infinite;
+
+            
+        }
+
+        .cta button {
+            position: absolute;
+            top: 16rem;
+            font-size: 4rem;
+            color: var(--s4);
+            background-color: var(--s1);
+            border: transparent;
+            border-radius: 1rem;
+            width: 15%;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        .cta button:hover {
+            background-color: var(--s4);
+            color: var(--s1);
+        }
+
+        .cta img {
+            height: 100%;
+            width: auto;
+            
+        }
+
+        .clouds img {
+            position: absolute;
+            top: 15rem;
+            width: 20%;
+            height: auto;
+
+            /* animation: upDownStatic 5s ease-in-out infinite; */
+        }
+
+        .cloud-0 {
+            position: relative;
+            left: 45rem;
+
+            animation: cloudMovement 5s ease-in-out infinite;
+        }
+
+        .cloud-1 {
+            position: relative;
+            left: 25rem;
+            z-index: -1;
+
+            animation: cloudMovement 5s ease-in-out 0.5s infinite;
+        }
+
+        .username-input {
+            display: none;
+            position: absolute;
+            top: 3.5rem;
+            left: 21.5rem;
+            background-color: var(--c1);
+            border-radius: 2rem;
+            width: 50%;
+            height: 85%;
+            text-align: center;
+            transition: 0.5s;
+        }
+
+        .username-input h3 {
+            height: 15%;
+            /* border: 1px solid; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+        }
+
+        .input-content {
+            height: 85%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            /* border: 1px solid; */
+        }
+
+        .username-box {
+            height: 40%;
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: flex-start;
+            font-size: 1.5rem;
+            text-align: justify;
+            /* border: 1px solid; */
+            
+        }
+
+
+
+        .username-box input {
+            width: 15rem;
+            height: 2rem;
+        }
+
+        .username-rules ul {
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            list-style-type: none;
+
+        }
+        
+
+
+        .background {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            z-index: -2;
+            
+        }
+
+        .bg-islands {
+            height: 100%;
+            width: 100%;
+            transform: scale(80%);
+            position: relative;
+            top: -5rem;
+            visibility: hidden;
+            /* overflow: hidden; */
+            /* z-index: -2; */
+
+        }
+
+        .bg-island-0 {
+            visibility: visible;
+            position: absolute;
+            top: 7rem;
+            left: 6rem;
+            width: 29%;
+            height: auto;
+            /* opacity: 0.6; */
+
+            animation: upDownStatic 15s ease-in-out 0.8s infinite;
+        }
+
+        .bg-island-1 {
+            visibility: visible;
+            position: absolute;
+            top: 7rem;
+            right: 4rem;
+            width: 29%;
+            height: auto;
+            /* opacity: 0.6; */
+
+            animation: upDownStatic 15s ease-in-out 1s infinite;
+        }
+
+        .bg-island-2 {
+            visibility: visible;
+            position: absolute;
+            top: 11rem;
+            right: -7rem;
+            width: 18%;
+            height: auto;
+            z-index: -3;
+            /* opacity: 0.6; */
+
+            animation: upDownStatic 15s ease-in-out 0.5s infinite;
+        }
+
+        .bg-island-3 {
+            visibility: visible;
+            position: absolute;
+            top: 7rem;
+            left: -6rem;
+            width: 20%;
+            height: auto;
+            z-index: -2;
+            /* opacity: 0.6; */
+            animation: upDownStatic 15s ease-in-out 0.2s infinite;
+        }
+
+        .bg-object {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            z-index: -3;
+        }
+
+        .mountain-0 {
+            width: 100%;
+            position: relative;
+            bottom: 15rem;
+            /* opacity: 0.5; */
+        }
+
+        #sun-burst {
+            color: var(--s4);
+        }
+
+        .sun-burst {
+            position: absolute;
+            width: 110%;
+            bottom: -2rem;
+            left: -5rem;
+            z-index: -4;
+            opacity: 0.4;
+            /* color: var(--s4); */
+            
+        }
+
+        .about-floating {
+            position: absolute;
+            font-size: 2rem;
+            bottom: 1rem;
+            right: 1rem;
+
+            animation: upDownStatic 3s ease infinite;
+            
+        }
+
+        .about-floating button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 4rem;
+            height: 4rem;
+            font-size: 3rem;
+            border: transparent;
+            background-color: transparent;
+            border: 0.3rem solid var(--c1);
+            border-radius: 50%;
+            color: var(--c1);
+            cursor: pointer;
+        }
+
+        .footer {
+            display: none;
+            height: 90%;
+            width: 90%;
+            background-color: var(--c1);
+            position: absolute;
+            bottom: 2rem;
+            left: 4.5rem;
+            font-family: sans-serif;
+            font-size: 1.5rem;
+            border-radius: 2rem;
+        }
+
+        .about-credit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0.5rem 0;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+
+        }
+
+        .about-credit h3 {
+            margin-top: 1rem;
+        }
+
+        .about-credit p {
+            margin-top: 1rem;
+            width: 80%;
+        }
+
+        .dev-profile {
+            width: 100%;
+            height: 80%;
+            bottom: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        /* .dev-profile .flex  {
+            width: 100%;
+            height: auto;
+
+
+        } */
+
+        .flex img {
+            width: 10rem;
+            height: auto;
+            border-radius: 50%;
+        }
+        
+        .about-credit button {
+            font-size: 1rem;
+            position: relative;
+            bottom: 2rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Sociology Adventures</h1>
+        <p>Game Pembelajaran Sosiologi</p>
+    </div>
+    <div class="container">
+        <div class="float-islands">
+            <div class="cta">
+                <button id="ctaButton">Mulai</button>
+                <img class="main-island" src="css/img/cta-island.png" alt="">
+            </div>
+            <div class="clouds">
+                <img class="cloud-0" src="css/img/cloud.png" alt="">
+                <img class="cloud-1" src="css/img/cloud.png" alt="">
+            </div>
+        </div>
+
+        <div id="username-input" class="username-input">
+            <h3>Masukkan username kamu!</h3>
+            <div class="input-content">
+                <div class="guidance-img">
+                    <img src="css/img/main-char.png" alt="">
+                </div>
+                <div class="username-box">
+                    <label for="username">Username</label>
+                    <input id="usernameInput" type="text" name="username" placeholder="username" maxlength="10" required>
+                    <button id="startGame">Main</button>
+                    <div class="username-rules">
+                        <ul>
+                            <li>1. Masukkan username kamu!</li>
+                            <li>2. Masukkan sesuai nama kamu!</li>
+                            <li>3. Maksimal 12 huruf</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="background">
+            <div class="bg-islands">
+                <img class="bg-island-0" src="css/img/float-Banten - bg.png" alt="">
+                <img class="bg-island-1" src="css/img/float-papua - bg.png" alt="">
+                <img class="bg-island-2" src="css/img/float-kalteng - bg.png" alt="">
+                <img class="bg-island-3" src="css/img/float-jateng - bg.png" alt="">
+            </div>
+            <div class="bg-object">
+                <img class="mountain-0" src="css/img/mountains-03.png" alt="">
+                <object class="sun-burst" data="css/img/SVG/Asset 1.svg" type="image/svg+xml"></object>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="about-floating"> <button id="creditButton">C</button></div>
+    <div id="footer" class="footer">
+        <div class="about-credit">
+            <h3>Pengembang || Kelompok 6</h3>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus, eos, voluptas fugiat pariatur labore adipisci iure iusto suscipit nisi a fugit optio, quisquam doloremque esse tenetur? Temporibus eveniet sed ab?</p>
+            <div class="dev-profile">
+                <div class="profile-0 flex">
+                    <img src="css/img/dev-team/bintang.jpg" alt="">
+                    <p>Bintang Ulina Siregar</p>
+                    <p>NIM</p>
+                </div>
+                <div class="profile-1 flex">
+                    <img src="css/img/dev-team/tio.jpg" alt="">
+                    <p>Muhamad Tio Dzikri</p>
+                    <p>NIM</p>
+                </div>
+                <div class="profile-2 flex">
+                    <img src="css/img/dev-team/ida.jpg" alt="">
+                    <p>Ida Dwi Lestari</p>
+                    <p>NIM</p>
+                </div>
+                <div class="profile-3 flex">
+                    <img src="css/img/dev-team/siti.jpg" alt="">
+                    <p>Siti Rahmah Indriyani</p>
+                    <p>NIM</p>
+                </div>
+            </div>
+            <button id="backButton" class="backButton">Kembali</button>
+        </div>
+        <!-- <div class="aturan-main"></div> -->
+    </div>
+    <script>
+
+        // Credit Button Start
+
+        const creditButton = document.getElementById('creditButton');
+        const backButton = document.getElementById('backButton');
+        const creditPage = document.getElementById('footer');
+
+        creditButton.onclick = function () {
+            creditPage.style.display = "block";
+        };
+
+        backButton.onclick = function () {
+            creditPage.style.display = "none";
+        };
+
+
+
+        // Credit Button End
+
+        // CTA Button Start
+        const ctaAction = document.getElementById('ctaButton');
+        const inputPage = document.getElementById('username-input');
+
+        ctaAction.onclick = function () {
+            if (inputPage.style.display === "none" || inputPage.style.display === "") {
+                inputPage.style.display = "block";
+            }
+        }
+        // CTA Button End
+
+
+    </script>
+    <script src="master.js"></script>
+    
+</body>
+</html>

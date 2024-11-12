@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        :root {
+            --c1    : #F6FCDF;
+            --c2    : #859F3D;
+            --c3    : #31511E;
+            --c4    : #1A1A19;
+            --s1    : #DFF2EB;
+            --s2    : #B9E5E8;
+            --s3    : #7AB2D3;  
+            --s4    : #4A628A; 
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            color: var(--c4);
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 3rem;
+            width: 80vw;
+            height: auto;
+            background-color: var(--c1);
+            border-radius: 1.4rem;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        .title {
+            text-align: center;
+        }
+        .sub-container {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .hangman {
+            margin: 0;
+            width: 300px;
+            height: 300px;
+        }
+        .hangman img {
+            width: 100%;
+        }
+        .words {
+            font-size: 24px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 18px;
+            width: 100px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .status {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .score {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>Hangman Game</h1>
+            <p>Tebak kata berdasarkan materi sebelumnya sebelum orang itu tergantung!</p>
+            <h3>Hint: ... Sosial</h3>
+        </div>
+        <div class="sub-container">
+            <div class="hangman">
+                <img src="css/img/hangman/hangman0.png" id="hangman-image" alt="Hangman Image">
+            </div>
+            <div class="words-container">
+                <div class="words" id="words-display"></div>
+                <input type="text" id="letter-input" maxlength="1" placeholder="Masukkan Huruf">
+                <button id="guess-button">Tebak</button>
+                <div class="score" id="score-display" style="display:none;"></div>
+                <button id="next-button" style="display:none;" onclick="goToNextPageHangman()">Lanjut Ke Halaman Selanjutnya</button>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        const words = ["PENYIMPANGAN", "PENGENDALIAN", "KETERATURAN"];
+let currentWordIndex = 0;
+let selectedWord;
+let guessedLetters;
+let maxAttempts = 5; // Total attempts set to 5 to match available images
+let currentAttempts;
+export let scoreHangman = 0; // Variable to store the total score
+
+// DOM Elements
+const wordsDisplay = document.getElementById("words-display");
+const hangmanImage = document.getElementById("hangman-image");
+const letterInput = document.getElementById("letter-input");
+const guessButton = document.getElementById("guess-button");
+const scoreDisplay = document.getElementById("score-display");
+const nextButton = document.getElementById("next-button");
+
+function startGame() {
+    if (currentWordIndex < words.length) {
+        selectedWord = words[currentWordIndex];
+        guessedLetters = [];
+        currentAttempts = 0;
+        updateWordDisplay();
+        updateHangmanImage();
+        letterInput.value = "";
+        guessButton.disabled = false; // Enable guessing
+        scoreDisplay.style.display = "none"; // Hide score display initially
+        nextButton.style.display = "none"; // Hide next button initially
+    } else {
+        endGame(); // End game if all words are attempted
+    }
+}
+
+function updateWordDisplay() {
+    const displayWord = selectedWord.split("").map(letter => (guessedLetters.includes(letter) ? letter : "_")).join(" ");
+    wordsDisplay.innerText = displayWord;
+}
+
+function updateHangmanImage() {
+    hangmanImage.src = `css/img/hangman/hangman${Math.min(currentAttempts, maxAttempts - 1)}.png`;
+}
+
+function endGame() {
+    // Display score and show next button
+    if (scoreHangman === 0) {
+        alert("Anda tidak berhasil menebak kata apapun. Skor akhir: 0");
+    }
+    scoreDisplay.innerText = `Total Skor Anda: ${scoreHangman}`;
+    scoreDisplay.style.display = "block";
+    guessButton.disabled = true;
+    nextButton.style.display = "inline-block";
+}
+
+guessButton.addEventListener("click", () => {
+    const letter = letterInput.value.toUpperCase();
+    letterInput.value = "";
+
+    if (!letter || guessedLetters.includes(letter)) {
+        alert("Masukkan huruf yang valid atau sudah ditebak.");
+        return;
+    }
+
+    guessedLetters.push(letter);
+
+    if (!selectedWord.includes(letter)) {
+        currentAttempts++;
+
+        if (currentAttempts === 4) {
+            // Update to the last image before showing the alert
+            updateHangmanImage();
+            
+            // Show alert and move to the next word
+            setTimeout(() => {
+                alert(`Anda telah melakukan 4 kesalahan! Kata yang benar adalah: ${selectedWord}.`);
+                currentWordIndex++;
+                startGame();
+            }, 100); // Small delay to ensure image updates before alert
+            return;
+        }
+    }
+
+    updateWordDisplay();
+    updateHangmanImage();
+
+    if (currentAttempts >= maxAttempts) {
+        alert(`Anda kalah! Kata yang benar adalah: ${selectedWord}.`);
+        currentWordIndex++;
+        startGame();
+    } else if (selectedWord.split("").every(letter => guessedLetters.includes(letter))) {
+        scoreHangman += 30;
+        alert(`Selamat! Anda berhasil menebak kata! Total Skor: ${scoreHangman}`);
+        
+        currentWordIndex++;
+        
+        if (currentWordIndex < words.length) {
+            startGame();
+        } else {
+            endGame(); // End game if all words are completed
+        }
+    }
+});
+
+nextButton.addEventListener("click", goToNextPage);
+
+function goToNextPage() {
+    localStorage.setItem('scoreHangman', scoreHangman);
+    window.location.href = "pesos-finish.html"; // Ganti dengan URL halaman tujuan
+}
+
+// Start the game on page load
+startGame();
+    </script>
+</body>
+</html>

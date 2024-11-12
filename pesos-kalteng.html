@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peta Sosiologi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+    --c1    : #F6FCDF;
+    --c2    : #859F3D;
+    --c3    : #31511E;
+    --c4    : #1A1A19;
+    --s1    : #DFF2EB;
+    --s2    : #B9E5E8;
+    --s3    : #7AB2D3;  
+    --s4    : #4A628A; 
+
+}
+
+@keyframes dancingChest {
+            0% {
+                transform: rotate(0) scale(1);
+            }
+
+            5% {
+                transform: rotate(4deg) scale(1);
+            }
+
+            10% {
+                transform: rotate(-4deg) scale(1);
+            }
+
+            15% {
+                transform: rotate(4deg) scale(1);
+            }
+
+            20% {
+                transform: rotate(-2deg) scale(1);
+            }
+            25% {
+                transform: rotate(2deg) scale(1);
+            }
+
+            30% {
+                transform: rotate(-2deg) scale(1);
+            }
+            35% {
+                transform: rotate(2deg) scale(1); 
+            }
+
+            40% {
+                transform: rotate(-2deg) scale(1);
+            }
+            45% {
+                transform: rotate(4deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(-4deg) scale(1);
+            }
+            55% {
+                transform: rotate(4deg) scale(1); 
+            }
+
+            60% {
+                transform: rotate(-2deg) scale(1);
+            }
+            65% {
+                transform: rotate(2deg) scale(1);
+            }
+
+            70% {
+                transform: rotate(-2deg) scale(1);
+            }
+            75% {
+                transform: rotate(2deg) scale(1);
+            }
+
+            80% {
+                transform: rotate(-4deg) scale(1);
+            }
+            85% {
+                transform: rotate(4deg) scale(1);
+            }
+
+            90% {
+                transform: rotate(-4deg) scale(1.2);
+            }
+            95% {
+                transform: rotate(4deg) scale(1.5);
+            }
+
+            100% {
+                transform: rotate(0) scale(2);
+            }
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            font-family: 'montserrat', sans-serif;
+        }
+
+        .header {
+            position: relative;
+            top: 0px;
+            display: flex;
+            align-items: center;
+            height: 10%;
+            width: 100%;
+            color: var(--s1);
+            background-color: var(--s4);
+            border-bottom: 3px solid var(--s1);
+
+
+        }
+        
+        .user-info {
+            width: 12%;
+            height: 100%;
+            position: relative;
+            /* left: 1rem; */
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            /* border: 1px solid; */
+        }
+
+        .user-info img {
+            width: 25%;
+            height: auto;
+
+        }
+        
+        .header .achievement {
+            margin: 0;
+            padding: 0;
+            position: relative;
+            width: 80%;
+            /* left: 40%; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+        }
+        
+        .margin-left-right {
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+
+        .score {
+            /* position: relative; */
+            /* left: 1rem; */
+            height: 80%;
+            width: 18%;
+            display: flex;
+            justify-content: center;
+
+            background-color: var(--s3);
+            border-radius: 0.5rem;
+        }
+        .score p {
+            position: relative;
+            /* left: 0.5rem; */
+            margin-right: 1rem;
+        }
+
+        .key {
+            height: 80%;
+            width: 10%;
+            background-color: var(--s3);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .key img {
+            position: relative;
+            /* left: -1rem; */
+            top: 4px;
+            /* margin-top: 0.5rem; */
+            margin-right: 2rem;
+            margin-left: 0.5rem;
+            width: 30%;
+            height: auto;
+            /* background-color: var(--s4);
+            border: 2px solid var(--s4);
+            border-radius: 10px; */
+
+        }
+
+        .key p {
+            margin-right: 1rem;
+            font-size: 2rem;
+        }
+
+        .char {
+            height: 80%;
+            width: 10%;
+            background-color: var(--s3);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .char img   {
+            position: relative;
+            top: 5px;
+            left: 0.5rem;
+            width: 10%;
+            margin-right: 3.5rem;
+        }
+    
+
+        
+
+
+
+        .container {
+            position: relative;
+            height: 90%;
+            width: 100%;
+            /* z-index: 1; */
+            background-color: var(--s3);
+            /* background-image: url('css/img/ocean-lowpoly-bg.png'); */
+            /* background-size: cover; */
+            /* backdrop-filter: ; */
+
+        }
+
+
+        .container .main-map {
+            position: relative;
+            top: 1.8rem;
+            left: -7.2rem;
+            width: 117%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            z-index: 3;
+        }
+
+
+
+        @keyframes upDownStatic {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(0.2rem) scale(1.2);
+            }
+
+            100% {
+                transform: translateY(0) scale(1);
+            }
+            
+
+        }
+
+        @keyframes flyingIn {
+            0% {
+                transform: translate(-25rem, -6rem) scale(0);
+            }
+            50% {
+                transform: translate(-15rem, 1rem) scale(2);
+            }
+            100% {
+                transform: translate(0, 0) scale(0);
+            }
+        }
+
+        .plane {
+            position: relative;
+            top: 7rem;
+            left: 36rem;
+            transform: scale(0);
+        }
+
+        .plane-animation {
+            /* position: relative;
+            top: 13.5rem;
+            left: 20rem;
+            transform: scale(0); */
+
+            animation: flyingIn 5s ease 1;
+        }
+
+        .container .main-map .island-size {
+            
+            width: 8%;
+        }
+
+        .container .main-map .banten {
+            position: absolute;
+            top: 17.5rem;
+            left: 24rem;
+            cursor: pointer;        
+        }
+        .container .main-map .sumut {
+            position: absolute;
+            top: 1.5rem;
+            left: 11.3rem;
+        }
+        .container .main-map .kalteng {
+            position: absolute;
+            top: 9.5rem;
+            left: 38rem;
+
+            animation: upDownStatic 1s ease infinite;
+        }
+        .container .main-map .sulteng {
+            position: absolute;
+            top: 9.5rem;
+            left: 51rem;
+        }
+        .container .main-map .papua {
+            position: absolute;
+            top: 14rem;
+            right: 8rem;
+        }
+        .container .main-map .jateng {
+            position: absolute;
+            top: 19.3rem;
+            left: 30.5rem;
+        }
+
+        .container .main-map .plane {
+            position: absolute;
+            width: 10%;
+            height: auto;
+            z-index: 2;
+        }
+
+        .container .main-map .pesos-img {
+            width: 85%;
+            height: auto;
+        }
+
+        .rules {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            width: 3rem;
+            height: 3rem;
+            font-size: 2.5rem;
+            background-color: var(--c1);
+            text-align: center;
+            border-radius: 10px;
+            z-index: 10;
+        }
+        .rules .rules-desc {
+            position: relative;
+            visibility: hidden;
+            /* display: none; */
+            /* position:; */
+            bottom: 11rem;
+            left: 1rem;
+            width: 32rem;
+            height: 10rem;
+            font-size: 1rem;
+            text-align: justify;
+            text-decoration: none;
+            background-color: var(--s4);
+            border-radius: 1rem;
+            z-index: 99;
+
+
+            /* transition: 1s; */
+        }
+
+        .rules .rules-desc h3 {
+            position: relative;
+            top: 0.5rem;
+            /* margin-left: 1rem; */
+            list-style: none;
+            text-align: center;
+        }
+
+        .rules .rules-desc ul {
+            /* position: relative; */
+            margin-top: 1rem;
+            margin-left: 1rem;
+            list-style: none;
+        }
+
+        .rules:hover .rules-desc {
+            visibility: visible;
+        }
+
+        .chest-gift-1 {
+            height: 100vh;
+            width: 100vw;
+            display: block;
+            position: absolute;
+            background-color: transparent;
+            
+            z-index: 20;
+        }
+
+
+
+        .get-chest {
+            display: block;
+            position: relative;
+            bottom: 10rem;
+            right: 21rem;
+            width: 150vw;
+            height: 150vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+
+        .get-chest img {
+            transform: scale(0.7);
+        }
+
+        .dancingChest {
+            
+            animation: dancingChest 2s ease-in-out 1;
+            /* transform: rotate(-4deg); */
+
+        }
+
+        .gift-content {
+            position: absolute;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            top: 4.5rem;
+            left: 11rem;
+            width: 75%;
+            height: 80%;
+            background-color: var(--c1);
+            border-radius: 1rem;
+        }
+
+        .gift-content h2 {
+            height: 10%;
+        }
+
+        .gift-section {
+            margin: 0 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .weber-gift {
+            margin-left: 2rem;
+            width: auto;
+            height: 90%;
+        }
+
+        .key-gift {
+            width: 20%;
+            height: auto;
+        }
+
+        .gift-desc {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="chest-gift-1" class="chest-gift-1">
+        <div id="obtainChest" class="get-chest">
+            <img src="css/img/chest.png" alt="">
+        </div>
+        <div id="gift-content" class="gift-content">
+            <h2>Selamat, ini hadiah kamu!</h2>
+            <div class="gift-section">
+                <img class="weber-gift" src="css/img/marx-full.png" alt="">
+                <img class="key-gift" src="css/img/key.png" alt="">
+                <div class="gift-desc">
+                    <h3>Sociologist's Name</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab sed molestias neque labore non, hic perferendis suscipit, consequuntur iure soluta ut veritatis distinctio amet a repellat quae quo repudiandae quos!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header">
+        <div class="user-info">
+            <img src="css/img/profile-photo.jpg" alt="">
+            <div><h3 id="username-pesos"></h3></div>
+        </div>
+        <div class="achievement">
+            <div class="score margin-left-right">
+                <p>POINT: </p>
+                <div id="scoreTotal"></div>
+                
+            </div>
+            <div class="key margin-left-right">
+                <p><img src="css//img/key.png" alt="key">1</p>
+            </div>
+            <div class="char margin-left-right">
+                <div class="char-amount">
+                    <p><img src="css/img/comte-full.png" alt="char">1</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <!-- <div class="container-title">
+            <h1>Peta Sosiologi</h1>
+        </div> -->
+        <div class="main-map">
+
+            <div class="islands">
+                <img class="banten island-size" src="css/img/float-Banten.png" alt="Banten">
+                <img class="sumut island-size" src="css/img/float-sumut.png" alt="Sumut">
+                <a id="trigger" href="#">
+                    <img class="kalteng island-size" src="css/img/float-kalteng.png" alt="Kalteng">
+                </a>
+                <img class="sulteng island-size" src="css/img/float-sulteng-locked.png" alt="Sulteng">
+                <img class="papua island-size" src="css/img/float-papua-locked.png" alt="Papua">
+                <img class="jateng island-size" src="css/img/float-jateng-locked.png" alt="Jateng">
+            </div>
+
+            <img id="planeAnimation" class="plane" src="css/img/weber-plane-reverse.png" alt="Plane">
+
+            <img class="pesos-img" src="css/img/Asset 1-04.png" alt="Peta Soiologi">
+        </div>
+        <div id="rules" class="rules">?
+            
+            <div id="rules-desc" class="rules-desc">
+                <h3>Peraturan dan Cara Bermain</h3>
+                <ul>
+                    <li>1. Masuk Peta Sosiologi dengan memasukkan username</li>
+                    <li>2. Klik Pulau yang sudah terbuka</li>
+                    <li>3. Masuk dan simak materi atau mainkan games di dalamnya</li>
+                    <li>4. Klik "Kembali ke Pesos" untuk melanjutkan permainan</li>
+                    <li>5. Terus ulangi hingga games selesai!</li>
+                </ul>
+            </div>
+        </div>
+        <div class="music-control">
+            <audio src=""></audio>
+        </div>
+    </div>
+
+    <script>
+        const giftChest = document.getElementById('chest-gift-1');
+        const removeChest = document.getElementById('obtainChest');
+        const acceptGift = document.getElementById('gift-content');
+
+        removeChest.onclick = function () {
+            removeChest.classList.add('dancingChest');
+
+            setTimeout(() => {
+                removeChest.style.display = "none";
+                acceptGift.style.display = "flex";
+            }, 2000);
+        };
+
+        
+
+        acceptGift.onclick = function () {
+            // acceptGift.style.display = "none";
+            giftChest.style.display = "none";
+
+        }
+        
+
+        const kaltengButton = document.getElementById('trigger');
+        const flyingPlaneWeber = document.getElementById('planeAnimation');
+
+        kaltengButton.onclick = function () {
+            flyingPlaneWeber.classList.add('plane-animation');
+
+            setTimeout (() => {
+                window.location.href = "kalteng.html";
+            }, 6000);
+        };
+
+
+        // document.getElementById('bantenButton').addEventListener("click", function (event) {
+        //     event.preventDefault ();
+        //     cons.waitTransition = document.getElementById('planeAnimation');
+        //     waitTransition.classList.add('plane-animation');
+
+        //     const targetUrl = "banten.html";
+
+        //     setTimeout(() => {
+        //         window.location.href = targetUrl;
+        //     }, 5000);
+        // });
+
+        const scoreTotal = localStorage.getItem('scoreQuiz');
+        document.getElementById('scoreTotal').textContent = scoreTotal;
+
+        const usernamePesos = localStorage.getItem('username');
+        document.getElementById('username-pesos').textContent = usernamePesos;
+    </script>
+    <!-- <script src="master.js"></script> -->
+</body>
+</html>
